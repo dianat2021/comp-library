@@ -1,0 +1,12 @@
+.button {
+  padding: var(--space-medium) var(--space-large);
+  font-family: inherit;
+  border-radius: var(--border-radius-small);
+  background-color: var(--primary-Color);
+  border: none;
+  font-size: var(--medium-font-size);
+}
+
+.button:hover {
+  background-color: #dde3e8;
+}

@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Inter-VariableFont;
 }
 button {
   cursor: pointer;
@@ -15,7 +16,6 @@ button {
   --secondary-color: #b399d4;
   --hover-color: #8a68b4;
   --text-color: #333333;
-
   /* Fonts */
   --base-font-size: 1rem;
   --medium-font-size: 1.5rem;
@@ -34,6 +34,6 @@ button {
 }
 
 @font-face {
-  font-family: BebasNeue-Regular;
-  src: url("/fonts/BebasNeue-Regular.ttf");
+  font-family: Inter-Variable;
+  src: url("/fonts/Inter-VariableFont.ttf");
 }

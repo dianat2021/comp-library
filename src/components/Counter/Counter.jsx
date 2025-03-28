@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./Counter.module.css";
+import Button from "../Button/Button";
 
 const Counter = ({ initialCount = 0, min = 0, max = Infinity, step = 1 }) => {
   const [count, setCount] = useState(initialCount);
@@ -18,21 +19,21 @@ const Counter = ({ initialCount = 0, min = 0, max = Infinity, step = 1 }) => {
 
   return (
     <div className={styles.counterCard}>
-      <button
-        aria-label="Decrease count"
+      <Button
+        ariaLabel="Decrease count"
         className={styles.decreaseButton}
         onClick={handleDecrease}
       >
         -
-      </button>
+      </Button>
       <span className={styles.countDisplay}>{count}</span>
-      <button
-        aria-label="Increase count"
+      <Button
+        ariaLabel="Increase count"
         className={styles.increaseButton}
         onClick={handleIncrease}
       >
         +
-      </button>
+      </Button>
     </div>
   );
 };
