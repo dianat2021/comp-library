@@ -1,9 +1,15 @@
+@font-face {
+  font-family: Inter-VariableFont;
+  src: url("/fonts/Inter-VariableFont.ttf");
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: Inter-VariableFont;
+  list-style: none;
 }
+
 button {
   cursor: pointer;
   font-family: inherit;
@@ -12,7 +18,7 @@ button {
 
 :root {
   --background-color: linear-gradient(to right, #6a11cb, #2575fc);
-  --primary-Color: #f3f6f9;
+  --primary-color: #f3f6f9;
   --secondary-color: #b399d4;
   --hover-color: #8a68b4;
   --text-color: #333333;
@@ -31,9 +37,4 @@ button {
   --border-radius-small: 0.25rem;
   --border-radius-medium: 0.5rem;
   --border-radius-large: 1rem;
-}
-
-@font-face {
-  font-family: Inter-Variable;
-  src: url("/fonts/Inter-VariableFont.ttf");
 }

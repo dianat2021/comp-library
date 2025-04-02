@@ -2,7 +2,7 @@
   width: 30%;
   height: 20%;
   min-width: 400px;
-  background-color: var(--primary-Color);
+  background-color: var(--primary-color);
   border-radius: var(--border-radius-medium);
   display: flex;
   align-items: center;

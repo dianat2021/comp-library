@@ -1,0 +1,35 @@
+.accordion {
+  width: 100%;
+  min-width: 380px;
+  border-radius: var(--border-radius-medium);
+}
+.header {
+  display: flex;
+  align-items: center;
+  padding: var(--space-medium);
+  background-color: var(--primary-color);
+  border-top-left-radius: var(--border-radius-medium);
+  border-top-right-radius: var(--border-radius-medium);
+}
+.header:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.title {
+  flex-grow: 1;
+}
+.toggleIcon {
+  font-size: var(--medium-font-size);
+  font-weight: 500;
+}
+.description {
+  padding: var(--space-medium);
+
+  background-color: var(--secondary-color);
+  border-bottom-left-radius: var(--border-radius-medium);
+  border-bottom-right-radius: var(--border-radius-medium);
+}
+.borderRadiusBottom {
+  border-bottom-left-radius: var(--border-radius-medium);
+  border-bottom-right-radius: var(--border-radius-medium);
+}

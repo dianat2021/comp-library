@@ -2,7 +2,7 @@
   padding: var(--space-medium) var(--space-large);
   font-family: inherit;
   border-radius: var(--border-radius-small);
-  background-color: var(--primary-Color);
+  background-color: var(--primary-color);
   border: none;
   font-size: var(--medium-font-size);
 }
