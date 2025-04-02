@@ -8,5 +8,5 @@
 }
 
 .button:hover {
-  background-color: #dde3e8;
+  opacity: 0.8;
 }

@@ -1,5 +1,4 @@
-import styles from "./Button.module.css";
-// import counterStyles from "./Counter.module.css";
+import buttonStyles from "./Button.module.css";
 
 const Button = ({
   children = "Click",
@@ -10,7 +9,7 @@ const Button = ({
 }) => {
   return (
     <button
-      className={`${styles.button} ${className}`}
+      className={`${className} ${buttonStyles.button} `}
       disabled={disabled}
       onClick={onClick}
       aria-label={ariaLabel}

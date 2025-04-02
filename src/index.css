@@ -21,6 +21,7 @@ button {
   --primary-color: #f3f6f9;
   --secondary-color: #b399d4;
   --hover-color: #8a68b4;
+  --border-color-light: lightgray;
   --text-color: #333333;
   --text-error: #f44336;
   /* Fonts */
