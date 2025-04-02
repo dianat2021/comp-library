@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
 import styles from "./App.module.css";
-import Accordion from "./components/Accordion/Accordion";
-import AccordionItem from "./components/AccordionItem/AccordionItem";
-import Button from "./components/Button/Button";
-import Counter from "./components/Counter/Counter";
+import Input from "./components/Input/Input";
 useEffect;
 function App() {
   return (
     <div className={styles.rootContainer}>
-      <Input />
+      <Input
+        label="First name"
+        placeholder="Enter first name"
+        id="firstname"
+        error="First name is required!"
+      />
+      <Input label="Last name" placeholder="Enter last name" id="lastname" />
+      <Input label="City" placeholder="Enter city" id="city" />
+      <Input label="Zip code" placeholder="Enter zip code" id="zipCode" />
     </div>
   );
 }

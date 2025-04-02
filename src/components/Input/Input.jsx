@@ -11,17 +11,21 @@ const Input = ({
   id,
 }) => {
   return (
-    <div>
-      {label && <label htmlFor={id}>{label}</label>}
+    <div className={styles.inputContainer}>
+      {label && (
+        <label htmlFor={id} className={styles.label}>
+          {label}
+        </label>
+      )}
       <input
         type={type}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className={className}
+        className={`${styles.input}  ${className}`}
         id={id}
       />
-      {error && <p>{error}</p>}
+      {error && <p className={error && styles.errorText}>{error}</p>}
     </div>
   );
 };

@@ -1,0 +1,18 @@
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+}
+.input {
+  min-width: 200px;
+  height: 32px;
+  padding: 0 0.5rem;
+  border-radius: var(--border-radius-small);
+}
+
+.errorText {
+  color: var(--text-error);
+  font-size: 0.85rem;
+}
+.label {
+  font-weight: bold;
+}

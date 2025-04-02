@@ -17,11 +17,12 @@ button {
 }
 
 :root {
-  --background-color: linear-gradient(to right, #6a11cb, #2575fc);
+  --background-color: azure;
   --primary-color: #f3f6f9;
   --secondary-color: #b399d4;
   --hover-color: #8a68b4;
   --text-color: #333333;
+  --text-error: #f44336;
   /* Fonts */
   --base-font-size: 1rem;
   --medium-font-size: 1.5rem;
