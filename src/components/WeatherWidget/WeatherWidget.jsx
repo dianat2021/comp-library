@@ -5,6 +5,7 @@ import Button from "../Button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import WeatherItem from "../WeatherItem/WeatherItem";
 const WeatherWidget = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [weatherForecastData, setWeatherForecastData] = useState(null);
@@ -79,6 +80,12 @@ const WeatherWidget = () => {
         </div>
       )}
       <hr />
+      <ul className={styles.forecastContainer}>
+        {weatherForecastData &&
+          weatherForecastData.forecast.forecastday.map((day) => {
+            return <WeatherItem day={day} />;
+          })}
+      </ul>
     </div>
   );
 };

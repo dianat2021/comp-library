@@ -50,3 +50,11 @@
 .currentCondition {
   font-weight: bold;
 }
+/* ----------- */
+
+.forecastContainer {
+  display: flex;
+  padding-top: var(--space-large);
+  justify-content: space-around;
+  align-items: center;
+}
