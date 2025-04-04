@@ -7,14 +7,15 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 const WeatherWidget = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [currentWeatherCondition, setCurrentWeatherCondition] = useState(null);
+  const [weatherForecastData, setWeatherForecastData] = useState(null);
+
   const fetchWeatherCondition = async () => {
     try {
       const response = await fetch(
         `http://localhost:3001/weather?q=${searchQuery}`
       );
       const result = await response.json();
-      setCurrentWeatherCondition(result);
+      setWeatherForecastData(result);
       console.log(result);
     } catch (error) {
       console.log(error, "error fetching data");
@@ -24,6 +25,14 @@ const WeatherWidget = () => {
   useEffect(() => {
     fetchWeatherCondition();
   }, []);
+
+  const handleSearchClick = () => {
+    if (searchQuery) {
+      fetchWeatherCondition();
+    }
+    setSearchQuery("");
+  };
+
   return (
     <div className={styles.weatherWidgetContainer}>
       <div className={styles.searchContainer}>
@@ -33,41 +42,43 @@ const WeatherWidget = () => {
           id="cityName"
           className={styles.weatherSearchInput}
           onChange={(e) => setSearchQuery(e.target.value)}
+          value={searchQuery}
         />
-        <Button className={styles.searchButton}>
+        <Button className={styles.searchButton} onClick={handleSearchClick}>
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </Button>
       </div>
-      {currentWeatherCondition && (
+      {weatherForecastData && (
         <div className={styles.weatherBasicInfo}>
           <div className={styles.locationDetails}>
             <span className={styles.locationIcon}>
               <FontAwesomeIcon icon={faLocationDot} size="2xl" />
             </span>
             <p className={styles.cityName}>
-              {currentWeatherCondition.location.name}
+              {weatherForecastData.location.name}
             </p>
             <p className={styles.countryName}>
-              {currentWeatherCondition.location.country}
+              {weatherForecastData.location.country}
             </p>
           </div>
 
           <div className={styles.tempDetails}>
             <span className={styles.currentWeatherIcon}>
               <img
-                src={currentWeatherCondition.current.condition.icon}
+                src={weatherForecastData.current.condition.icon}
                 alt="Current weather icon"
               />
             </span>
             <p className={styles.temperature}>
-              {Math.round(currentWeatherCondition.current.temp_c)}&deg;C
+              {Math.round(weatherForecastData.current.temp_c)}&deg;C
             </p>
             <p className={styles.currentCondition}>
-              {currentWeatherCondition.current.condition.text}
+              {weatherForecastData.current.condition.text}
             </p>
           </div>
         </div>
       )}
+      <hr />
     </div>
   );
 };

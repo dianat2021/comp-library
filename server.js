@@ -14,13 +14,14 @@ app.use(cors());
 app.get("/weather", async (req, res) => {
   const searchQuery = req.query.q || "oslo";
   try {
-    const response = await fetch(
-      `http://api.weatherapi.com/v1/current.json?key=${process.env.WEATHER_API_KEY}&q=${searchQuery}`
+    // Forecase weather request
+    const forecastResponse = await fetch(
+      `http://api.weatherapi.com/v1/forecast.json?key=${process.env.WEATHER_API_KEY}&q=${searchQuery}&days=3`
     );
-    const result = await response.json();
-    console.log(result);
+    const forecastResult = await forecastResponse.json();
+    console.log(forecastResult);
 
-    res.json(result);
+    res.json(forecastResult);
   } catch (error) {
     console.log(error, "Error fetching the data");
   }
