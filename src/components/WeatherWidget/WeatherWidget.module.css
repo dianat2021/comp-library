@@ -1,0 +1,52 @@
+.weatherWidgetContainer {
+  width: 50%;
+  height: 40%;
+  min-width: 400px;
+  border-radius: var(--border-radius-medium);
+  border: 2px solid black;
+  padding: var(--space-medium);
+}
+.weatherWidgetContainer .searchContainer {
+  display: flex;
+  /* justify-content: center; */
+  padding: var(--space-medium);
+}
+
+.weatherSearchInput {
+  height: 40px;
+  flex-grow: 1;
+}
+.searchButton {
+  padding: 0 var(--space-small);
+  height: 40px;
+}
+/* ---------------- */
+.weatherBasicInfo {
+  padding: var(--space-large) 0;
+  display: flex;
+}
+.weatherBasicInfo div {
+  flex: 1;
+}
+.locationDetails,
+.tempDetails {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.locationIcon,
+.currentWeatherIcon {
+  height: 60px;
+  max-height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cityName,
+.temperature {
+  font-size: var(--x-large-font-size);
+}
+.countryName,
+.currentCondition {
+  font-weight: bold;
+}

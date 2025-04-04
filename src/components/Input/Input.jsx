@@ -11,7 +11,8 @@ const Input = ({
   id,
 }) => {
   return (
-    <div className={styles.inputContainer}>
+    // <div className={styles.inputContainer}>
+    <>
       {label && (
         <label htmlFor={id} className={styles.label}>
           {label}
@@ -26,7 +27,8 @@ const Input = ({
         id={id}
       />
       {error && <p className={error && styles.errorText}>{error}</p>}
-    </div>
+    </>
+    // </div>
   );
 };
 
