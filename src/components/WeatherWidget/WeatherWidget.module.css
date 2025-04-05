@@ -67,5 +67,5 @@
   align-items: center;
 }
 .forecastHeading {
-  padding-top: var(--space-medium);
+  padding: var(--space-medium) 0;
 }

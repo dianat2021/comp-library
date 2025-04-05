@@ -17,19 +17,16 @@ const WeatherWidget = () => {
       const response = await fetch(
         `http://localhost:3001/weather?q=${searchQuery}`
       );
-      if (!response.ok) {
-        throw new Error(
-          response.status === 404
-            ? "City not found."
-            : "Failed to fetch data. Please try again later."
-        );
-      }
       const result = await response.json();
+      if (result.error || !result.location) {
+        console.log(result); // shows the error object if any error occurs
+        throw new Error(result.error?.message);
+      }
       setWeatherForecastData(result);
       setError("");
-      console.log(result);
     } catch (error) {
       setError(error.message);
+      setWeatherForecastData(null);
     }
   };
 
@@ -75,49 +72,61 @@ const WeatherWidget = () => {
         </Button>
       </div>
 
-      <h4>Current forecast for {currentDate}</h4>
       {error ? (
         <ErrorMessage message={error} />
       ) : (
-        <div className={styles.weatherBasicInfo}>
-          <div className={styles.locationDetails}>
-            <span className={styles.locationIcon}>
-              <FontAwesomeIcon icon={faLocationDot} size="2xl" />
-            </span>
-            <p className={styles.cityName}>
-              {weatherForecastData.location.name}
-            </p>
-            <p className={styles.countryName}>
-              {weatherForecastData.location.country}
-            </p>
+        <>
+          <h4>Current forecast for {currentDate}</h4>
+          <div className={styles.weatherBasicInfo}>
+            <div className={styles.locationDetails}>
+              <span className={styles.locationIcon}>
+                <FontAwesomeIcon icon={faLocationDot} size="2xl" />
+              </span>
+              <p className={styles.cityName}>
+                {weatherForecastData?.location?.name}
+              </p>
+              <p className={styles.countryName}>
+                {weatherForecastData?.location?.country}
+              </p>
+            </div>
+
+            <div className={styles.tempDetails}>
+              <span className={styles.currentWeatherIcon}>
+                <img
+                  src={weatherForecastData?.current?.condition.icon}
+                  alt="Current weather icon"
+                />
+              </span>
+              <p className={styles.temperature}>
+                {Math.round(weatherForecastData?.current?.temp_c)}&deg;C
+              </p>
+              <p className={styles.currentCondition}>
+                {weatherForecastData?.current?.condition.text}
+              </p>
+            </div>
           </div>
 
-          <div className={styles.tempDetails}>
-            <span className={styles.currentWeatherIcon}>
-              <img
-                src={weatherForecastData.current.condition.icon}
-                alt="Current weather icon"
-              />
-            </span>
-            <p className={styles.temperature}>
-              {Math.round(weatherForecastData.current.temp_c)}&deg;C
-            </p>
-            <p className={styles.currentCondition}>
-              {weatherForecastData.current.condition.text}
-            </p>
+          <hr />
+          <div>
+            <h4 className={styles.forecastHeading}>
+              3-Day Temperature Overview
+            </h4>
+
+            <ul className={styles.forecastContainer}>
+              {weatherForecastData &&
+                weatherForecastData?.forecast?.forecastday.map((day) => {
+                  return <WeatherItem day={day} key={day.date_epoch} />;
+                })}
+            </ul>
           </div>
-        </div>
+        </>
       )}
-      <hr />
-      <h4 className={styles.forecastHeading}>3-Day Temperature Overview</h4>
-      <ul className={styles.forecastContainer}>
-        {weatherForecastData &&
-          weatherForecastData.forecast.forecastday.map((day) => {
-            return <WeatherItem day={day} key={day.date_epoch} />;
-          })}
-      </ul>
     </div>
   );
 };
 
 export default WeatherWidget;
+
+// This checks if the API response contains an error field. If the API provides an error object or key (e.g., { "error": "City not found" }), this condition will catch it.
+
+// Why? Some APIs don’t rely on HTTP status codes like 404 for errors. Instead, they return a 200 OK response with an error field in the payload. By checking result.error, you account for these cases.
