@@ -9,7 +9,7 @@ import WeatherItem from "../WeatherItem/WeatherItem";
 const WeatherWidget = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [weatherForecastData, setWeatherForecastData] = useState(null);
-
+  const [currentDate, setCurrentDate] = useState("");
   const fetchWeatherCondition = async () => {
     try {
       const response = await fetch(
@@ -34,6 +34,21 @@ const WeatherWidget = () => {
     setSearchQuery("");
   };
 
+  const formatCurrentDate = () => {
+    const date = new Date();
+    const formattedDate = new Intl.DateTimeFormat("en-US", {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    }).format(date);
+
+    setCurrentDate(formattedDate);
+  };
+
+  useEffect(() => {
+    formatCurrentDate();
+  }, []);
   return (
     <div className={styles.weatherWidgetContainer}>
       <div className={styles.searchContainer}>
@@ -49,6 +64,7 @@ const WeatherWidget = () => {
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </Button>
       </div>
+      <h4>Current forecast for {currentDate}</h4>
       {weatherForecastData && (
         <div className={styles.weatherBasicInfo}>
           <div className={styles.locationDetails}>
@@ -80,10 +96,11 @@ const WeatherWidget = () => {
         </div>
       )}
       <hr />
+      <h4 className={styles.forecastHeading}>3-Day Temperature Overview</h4>
       <ul className={styles.forecastContainer}>
         {weatherForecastData &&
           weatherForecastData.forecast.forecastday.map((day) => {
-            return <WeatherItem day={day} />;
+            return <WeatherItem day={day} key={day.date_epoch} />;
           })}
       </ul>
     </div>
