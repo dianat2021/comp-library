@@ -6,20 +6,30 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import WeatherItem from "../WeatherItem/WeatherItem";
+import ErrorMessage from "../ErrorMessage/ErrorMesssage";
 const WeatherWidget = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [weatherForecastData, setWeatherForecastData] = useState(null);
   const [currentDate, setCurrentDate] = useState("");
+  const [error, setError] = useState("");
   const fetchWeatherCondition = async () => {
     try {
       const response = await fetch(
         `http://localhost:3001/weather?q=${searchQuery}`
       );
+      if (!response.ok) {
+        throw new Error(
+          response.status === 404
+            ? "City not found."
+            : "Failed to fetch data. Please try again later."
+        );
+      }
       const result = await response.json();
       setWeatherForecastData(result);
+      setError("");
       console.log(result);
     } catch (error) {
-      console.log(error, "error fetching data");
+      setError(error.message);
     }
   };
 
@@ -64,8 +74,11 @@ const WeatherWidget = () => {
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </Button>
       </div>
+
       <h4>Current forecast for {currentDate}</h4>
-      {weatherForecastData && (
+      {error ? (
+        <ErrorMessage message={error} />
+      ) : (
         <div className={styles.weatherBasicInfo}>
           <div className={styles.locationDetails}>
             <span className={styles.locationIcon}>
