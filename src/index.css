@@ -6,11 +6,15 @@
   font-family: Montserrat-VariableFont;
   src: url("/fonts/Montserrat-VariableFont");
 }
+@font-face {
+  font-family: RobotoMono;
+  src: url("/fonts/RobotoMono.ttf");
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Inter-VariableFont;
+  /* font-family: Inter-VariableFont; */
   list-style: none;
 }
 
@@ -25,6 +29,7 @@ button {
   --primary-color: #f3f6f9;
   --secondary-color: #b399d4;
   --hover-color: #8a68b4;
+  --tertiary-Color: #472c7a;
   --border-color-light: lightgray;
   --text-color: #333333;
   --text-error: #f44336;

@@ -7,6 +7,7 @@ import Spinner from "./components/Spinner/Spinner";
 import Counter from "./components/Counter/Counter";
 import Button from "./components/Button/Button";
 import Accordion from "./components/Accordion/Accordion";
+import Stopwatch from "./components/Stopwatch/Stopwatch";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(true);
@@ -28,7 +29,8 @@ function App() {
       <Input /> */}
       {/* <Accordion /> */}
       {/* <Spinner /> */}
-      <WeatherWidget />
+      {/* <WeatherWidget /> */}
+      <Stopwatch />
     </div>
   );
 }
