@@ -39,3 +39,46 @@
   box-shadow: 0px 4px 10px var(--tertiary-Color); /* Adds depth */
   transition: box-shadow 0.3s;
 }
+.minutes,
+.seconds {
+  width: 2ch;
+}
+.milliseconds {
+  width: 3ch;
+}
+.active {
+  background-color: var(--tertiary-Color);
+  color: var(--primary-color);
+}
+
+.controlButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+.controlsContainer .controlButton:disabled:hover {
+  box-shadow: none; /* Force removes shadow */
+}
+.timerLogoContainer {
+  padding: var(--space-medium);
+  display: flex;
+  justify-content: center;
+}
+.timerLogo {
+  width: 60px;
+  height: auto;
+}
+.runningLogo {
+  animation: pulse 1s infinite linear;
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1); /* Slightly enlarge */
+  }
+  100% {
+    transform: scale(1);
+  }
+}
