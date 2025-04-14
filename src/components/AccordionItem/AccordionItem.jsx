@@ -5,14 +5,16 @@ const AccordionItem = ({
   title,
   description,
   openAccordion,
-  onOpen,
+  setOpenAccordion,
   accID,
+  toggleIconOpen = "-",
+  toggleIconClose = "+",
 }) => {
   // const [isAccordionOpen, setIsAccordionOpen] = useState(false);
   const isAccordionOpen = openAccordion === accID;
   const handleToggleAccordion = () => {
     // setIsAccordionOpen((prev) => !prev);
-    onOpen(isAccordionOpen ? null : accID);
+    setOpenAccordion(isAccordionOpen ? null : accID);
   };
 
   return (
@@ -24,9 +26,17 @@ const AccordionItem = ({
         onClick={handleToggleAccordion}
       >
         <h3 className={styles.title}>{title}</h3>
-        <span className={styles.toggleIcon}>{isAccordionOpen ? "-" : "+"}</span>
+        <span className={styles.toggleIcon}>
+          {isAccordionOpen ? toggleIconOpen : toggleIconClose}
+        </span>
       </header>
-      {isAccordionOpen && <p className={styles.description}>{description}</p>}
+      <div
+        className={`${styles.descriptionWrapper} ${
+          isAccordionOpen ? styles.open : ""
+        }`}
+      >
+        <p className={styles.description}>{description}</p>
+      </div>
     </li>
   );
 };

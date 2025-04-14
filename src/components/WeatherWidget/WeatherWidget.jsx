@@ -7,13 +7,17 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import WeatherItem from "../WeatherItem/WeatherItem";
 import ErrorMessage from "../ErrorMessage/ErrorMesssage";
+import Spinner from "../Spinner/Spinner";
 const WeatherWidget = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [weatherForecastData, setWeatherForecastData] = useState(null);
   const [currentDate, setCurrentDate] = useState("");
   const [error, setError] = useState("");
+  const [isFetchingWeather, setIsFetchingWeather] = useState(false);
+
   const fetchWeatherCondition = async () => {
     try {
+      setIsFetchingWeather(true);
       const response = await fetch(
         `http://localhost:3001/weather?q=${searchQuery}`
       );
@@ -27,6 +31,8 @@ const WeatherWidget = () => {
     } catch (error) {
       setError(error.message);
       setWeatherForecastData(null);
+    } finally {
+      setIsFetchingWeather(false);
     }
   };
 
@@ -58,6 +64,8 @@ const WeatherWidget = () => {
   }, []);
   return (
     <div className={styles.weatherWidgetContainer}>
+      {isFetchingWeather && <Spinner />}
+      {/* Code for the search container-------------------------------------- */}
       <div className={styles.searchContainer}>
         <Input
           type="search"
@@ -66,14 +74,19 @@ const WeatherWidget = () => {
           className={styles.weatherSearchInput}
           onChange={(e) => setSearchQuery(e.target.value)}
           value={searchQuery}
+          onKeyDown={(e) => e.key === "Enter" && handleSearchClick()}
         />
         <Button className={styles.searchButton} onClick={handleSearchClick}>
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </Button>
       </div>
-
+      {/* Code for the current weather-------------------------------------- */}
       {error ? (
-        <ErrorMessage message={error} />
+        <ErrorMessage
+          message={error}
+          errorLogo={"/error.svg"}
+          errorLogoAlt="Error icon"
+        />
       ) : (
         <>
           <h4>Current forecast for {currentDate}</h4>
@@ -98,7 +111,10 @@ const WeatherWidget = () => {
                 />
               </span>
               <p className={styles.temperature}>
-                {Math.round(weatherForecastData?.current?.temp_c)}&deg;C
+                {weatherForecastData?.current?.temp_c
+                  ? Math.round(weatherForecastData?.current?.temp_c)
+                  : "--"}
+                &deg;C
               </p>
               <p className={styles.currentCondition}>
                 {weatherForecastData?.current?.condition.text}

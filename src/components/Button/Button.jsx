@@ -9,7 +9,7 @@ const Button = ({
 }) => {
   return (
     <button
-      className={`${className} ${buttonStyles.button} `}
+      className={`${buttonStyles.button} ${className}`}
       disabled={disabled}
       onClick={onClick}
       aria-label={ariaLabel}
@@ -21,10 +21,10 @@ const Button = ({
 
 export default Button;
 
-// Since CSS Modules scope the styles to the component where they’re defined and imported (like Counter),
-//  the Button component can use those styles indirectly by applying the className string, without needing
-// direct access to the CSS file.
+// Accessible Description:
 
-// let me see if i got it clearly. Although we say css modules make the classes scoped,
-// it means it makes unique class names but these unique classnames are not in fact scoped but available globally in the DOM,
-//  the thing is CSS module prevents the same classname to be produced twice?
+//If the button doesn't have visible text (e.g., it's represented by an icon), the aria-label provides the text that a screen reader will announce. For example, if you have a button with a "thumbs-up" icon, setting aria-label="Like" ensures screen readers understand its purpose.
+
+//Clarifying Actions:
+
+//Even if the button has visible text, the aria-label can offer additional context or a more detailed explanation. For example, a button labeled "Submit" could have aria-label="Submit your response" to give more clarity.

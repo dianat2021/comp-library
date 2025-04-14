@@ -1,10 +1,7 @@
-.inputContainer {
-  display: flex;
-}
 .input {
   min-width: 200px;
   height: 32px;
-  padding: 0 0.5rem;
+  padding: 0 var(--space-small);
   border-radius: var(--border-radius-small);
   border: 2px solid var(--border-color-light);
 }

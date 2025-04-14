@@ -48,7 +48,7 @@ const Accordion = () => {
               description={item.answer}
               key={item.id}
               openAccordion={openAccordion}
-              onOpen={setOpenAccordion}
+              setOpenAccordion={setOpenAccordion}
               accID={item.id}
             />
           );

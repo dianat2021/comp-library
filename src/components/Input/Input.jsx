@@ -6,12 +6,12 @@ const Input = ({
   placeholder = "",
   value,
   onChange,
+  onKeyDown,
   error,
   className,
   id,
 }) => {
   return (
-    // <div className={styles.inputContainer}>
     <>
       {label && (
         <label htmlFor={id} className={styles.label}>
@@ -23,12 +23,12 @@ const Input = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className={`${styles.input}  ${className}`}
+        className={`${styles.input} ${className}`}
         id={id}
+        onKeyDown={onKeyDown}
       />
-      {error && <p className={error && styles.errorText}>{error}</p>}
+      {error && <p className={styles.errorText}>{error}</p>}
     </>
-    // </div>
   );
 };
 

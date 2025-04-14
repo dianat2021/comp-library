@@ -24,12 +24,23 @@
 }
 .description {
   padding: var(--space-medium);
-
   background-color: var(--secondary-color);
   border-bottom-left-radius: var(--border-radius-medium);
   border-bottom-right-radius: var(--border-radius-medium);
+  transition: 1s;
 }
 .borderRadiusBottom {
   border-bottom-left-radius: var(--border-radius-medium);
   border-bottom-right-radius: var(--border-radius-medium);
+  transition: border-radius 0.3s linear;
+}
+.descriptionWrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s linear;
+}
+
+.descriptionWrapper.open {
+  max-height: 500px;
+  overflow: auto;
 }

@@ -2,6 +2,10 @@
   font-family: Inter-VariableFont;
   src: url("/fonts/Inter-VariableFont.ttf");
 }
+@font-face {
+  font-family: Montserrat-VariableFont;
+  src: url("/fonts/Montserrat-VariableFont");
+}
 * {
   margin: 0;
   padding: 0;
