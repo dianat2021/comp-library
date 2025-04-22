@@ -8,5 +8,5 @@
   align-items: center;
   gap: var(--space-medium);
   /* background: var(--background-color); */
-  background-color: royalblue;
+  background: var(--background-color);
 }

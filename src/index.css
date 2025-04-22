@@ -25,7 +25,7 @@ button {
 }
 
 :root {
-  --background-color: azure;
+  --background-color: linear-gradient(to right, #0f0c29, #302b63, #24243e);
   --primary-color: #f3f6f9;
   --secondary-color: #b399d4;
   --hover-color: #8a68b4;
